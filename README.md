@@ -1,3 +1,4 @@
-# Welcome to your Lovable project
+# Welcome
+# A glimpse into my journey, Skills, and projects.
 
-TODO: Document your project here
+
