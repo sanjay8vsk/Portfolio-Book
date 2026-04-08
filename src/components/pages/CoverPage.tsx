@@ -11,20 +11,20 @@ const CoverPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         {/* Content */}
         <div className="text-center z-10 px-8">
           <div className="w-16 h-0.5 bg-page-accent/60 mx-auto mb-8" />
-          <h1 className="text-4xl md:text-5xl font-serif text-primary-foreground tracking-wide mb-4">
+          <h1 className="text-4xl md:text-5xl font-serif text-gray-900 tracking-wide mb-4">
             Portfolio
           </h1>
-          <p className="text-lg font-book text-primary-foreground/70 tracking-[0.3em] uppercase mb-2">
-            John Doe
+          <p className="text-lg font-book text-gray-900 tracking-[0.15em] uppercase mb-2">
+            Sanjay Babu 
           </p>
-          <p className="text-sm font-body text-primary-foreground/50 tracking-widest uppercase">
-            Full Stack Developer
+          <p className="text-sm font-body text-gray-500 tracking-widest ">
+            - Data • Cloud • AI -
           </p>
-          <div className="w-16 h-0.5 bg-page-accent/60 mx-auto mt-8" />
+          <div className="w-16 h-0.5 bg-gray-400 mx-auto mt-8" />
         </div>
 
         {/* Bottom year */}
-        <p className="absolute bottom-8 text-xs font-body text-primary-foreground/40 tracking-[0.5em]">
+        <p className="absolute bottom-8 text-xs font-body text-gray-900 tracking-[0.5em] mt-12">
           2026
         </p>
       </div>
