@@ -21,7 +21,7 @@ const EducationPage = React.forwardRef<HTMLDivElement>((_, ref) => {
       <div className="book-page-inner p-5 md:p-8 flex flex-col">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter II</p>
         <h2 className="text-xl font-serif text-page-text mb-3">Education</h2>
-        <div className="w-12 h-0.5 bg-page-accent/50 mb-8" />
+        <div className="w-12 h-0.5 bg-page-accent/50 mb-6"></div>
         <div className="space-y-4">
           {education.map((edu) => (
             <div key={edu.degree} className="relative pl-4 border-l border-page-accent/30">
@@ -38,7 +38,7 @@ const EducationPage = React.forwardRef<HTMLDivElement>((_, ref) => {
             "Education is not preparation for life; education is life itself."
           </p> */}
         </div>
-        <p className="absolute bottom-6 right-8 text-xs font-body text-page-text/30">3</p>
+        <p className="absolute bottom-6 right-12 text-xs font-body text-page-text/30">3</p>
       </div>
     </div>
   );
