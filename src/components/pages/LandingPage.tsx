@@ -25,7 +25,7 @@ const LandingPage = React.forwardRef<HTMLDivElement>((_, ref) => {
           </p>
           <p className="text-xs text-page-text/50 mt-2 tracking-wide">— Peter Drucker</p>
         </div>
-        <p className="absolute bottom-6 right-8 text-xs font-body text-page-text/30">1</p>
+        <p className="absolute bottom-6 right-12 text-xs font-body text-page-text/30">1</p>
       </div>
     </div>
   );

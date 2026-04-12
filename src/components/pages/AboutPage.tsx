@@ -19,7 +19,7 @@ const AboutPage = React.forwardRef<HTMLDivElement>((_, ref) => {
           </p>
         </div>
   
-        <p className="absolute bottom-6 left-8 text-xs font-body text-page-text/30">2</p>
+        <p className="absolute bottom-6 right-10 text-xs font-body text-page-text/30">2</p>
       </div>
     </div>
   );

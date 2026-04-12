@@ -33,7 +33,7 @@ const SkillsPage = React.forwardRef<HTMLDivElement>((_, ref) => {
             </div>
           ))}
         </div>
-        <p className="absolute bottom-6 right-8 text-xs font-body text-page-text/30">4</p>
+        <p className="absolute bottom-6 right-10 text-xs font-body text-page-text/30">4</p>
       </div>
     </div>
   );
