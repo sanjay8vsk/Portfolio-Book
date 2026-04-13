@@ -14,12 +14,6 @@ const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
       period: "June 2023 - August 2023",
       description: "Built payment dashboard features serving millions of merchants worldwide.",
     },
-    {
-      role: "Software Engineer",
-      company: "Airbnb",
-      period: "2019 - 2021",
-      description: "Developed booking flow optimizations that increased conversions by 15%.",
-    },
   ];
 
   return (
@@ -27,8 +21,9 @@ const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
       <div className="book-page-inner p-5 md:p-8 flex flex-col">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter IV</p>
         <h2 className="text-xl font-serif text-page-text mb-3">Experience</h2>
-        <div className="w-12 h-0.5 bg-page-accent/50 mb-6"></div>
-        <div className="space-y-6 flex-1">
+        <div className="space-y-2.5">
+        <div className="w-12 h-[2px] bg-page-accent/50 mb-6"></div>
+        {/* <div className="space-y-6 flex-1"> */}
           {experiences.map((exp) => (
             <div key={exp.role} className="relative pl-6 border-l-2 border-page-accent/30">
               <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-page-accent" />

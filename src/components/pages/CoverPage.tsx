@@ -20,7 +20,7 @@ const CoverPage = React.forwardRef<HTMLDivElement>((_, ref) => {
           <p className="text-sm font-body text-gray-500 tracking-widest ">
             - Data • Cloud • AI -
           </p>
-          <div className="w-16 h-0.5 bg-gray-400 mx-auto mt-8" />
+          <div className="w-16 h-0.5 bg-page-accent/60 mx-auto mt-8" />
         </div>
 
         {/* Bottom year */}
