@@ -3,15 +3,15 @@ import React from "react";
 const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
   const experiences = [
     {
-      role: "Senior Frontend Engineer",
-      company: "Google",
-      period: "2023 - Present",
+      role: "Cloud Engineer",
+      company: "HeproAi",
+      period: "March 2026 - Present",
       description: "Leading the design system team, building scalable UI components used across multiple products.",
     },
     {
-      role: "Full Stack Developer",
-      company: "Stripe",
-      period: "2021 - 2023",
+      role: "Software Engineer Intern",
+      company: "Kenexoft Technologies",
+      period: "June 2023 - August 2023",
       description: "Built payment dashboard features serving millions of merchants worldwide.",
     },
     {
@@ -24,10 +24,10 @@ const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner p-8 md:p-12 flex flex-col">
-        <p className="text-sm font-body text-page-accent tracking-[0.3em] uppercase mb-2">Chapter IV</p>
-        <h2 className="text-3xl font-serif text-page-text mb-6">Experience</h2>
-        <div className="w-12 h-0.5 bg-page-accent/50 mb-6" />
+      <div className="book-page-inner p-5 md:p-8 flex flex-col">
+        <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter IV</p>
+        <h2 className="text-xl font-serif text-page-text mb-3">Experience</h2>
+        <div className="w-12 h-0.5 bg-page-accent/50 mb-6"></div>
         <div className="space-y-6 flex-1">
           {experiences.map((exp) => (
             <div key={exp.role} className="relative pl-6 border-l-2 border-page-accent/30">
