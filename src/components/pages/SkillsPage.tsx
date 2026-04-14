@@ -2,10 +2,10 @@ import React from "react";
 
 const SkillsPage = React.forwardRef<HTMLDivElement>((_, ref) => {
   const skills = [
-    { category: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js"] },
-    { category: "Backend", items: ["Node.js", "Python", "Go", "PostgreSQL", "Redis"] },
-    // { category: "DevOps", items: ["Docker", "AWS", "CI/CD", "Kubernetes", "Terraform"] },
-    // { category: "Design", items: ["Figma", "UI/UX", "Responsive", "Animation", "A11y"] },
+    { category: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind CSS"] },
+    { category: "Backend", items: ["Node.js", "Python", "API Design", "PostgreSQL", "SQL"] },
+    { category: "Data & AI", items: ["Pandas", "NumPy", "Scikit-learn"] },
+    { category: "Cloud & DevOps", items: ["Docker", "AWS", "GitHub Actions", "Azure"] },
   ];
 
   return (
@@ -17,14 +17,14 @@ const SkillsPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         <div className="w-12 h-[2px] bg-page-accent/50 mb-4 ml-4"></div>
           {skills.map((group) => (
             <div key={group.category}>
-              <h3 className="text-sm font-body text-page-accent uppercase tracking-[0.2em] mb-2 ml-4">
+              <h3 className="text-xs font-body text-page-accent uppercase tracking-[0.2em] mb-1.5 ml-4">
                 {group.category}
               </h3>
-              <div className="flex flex-wrap gap-1.5 ml-4">
+              <div className="flex flex-wrap gap-1 ml-4">
                 {group.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-0.75 py-[2px] text-sm font-body text-page-text/70 border border-page-accent/20 rounded-full bg-page-accent/5"
+                    className="px-1 py-[2px] text-xs font-body text-page-text/80 border border-page-accent/25 rounded-full bg-page-accent/5"
                   >
                     {skill}
                   </span>
