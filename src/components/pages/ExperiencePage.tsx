@@ -22,7 +22,7 @@ const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter IV</p>
         <h2 className="text-xl font-serif text-page-text mb-3">Experience</h2>
         <div className="space-y-2.5">
-        <div className="w-12 h-[2px] bg-page-accent/50 mb-6"></div>
+        <div className="w-12 h-[2px] bg-page-accent/50 mb-3"></div>
         {/* <div className="space-y-6 flex-1"> */}
           {experiences.map((exp) => (
             <div key={exp.role} className="relative pl-6 border-l-2 border-page-accent/30">
@@ -33,7 +33,7 @@ const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
             </div>
           ))}
         </div>
-        <p className="absolute bottom-6 right-8 text-xs font-body text-page-text/30">5</p>
+        <p className="absolute bottom-6 right-12 text-xs font-body text-page-text/30">5</p>
       </div>
     </div>
   );
