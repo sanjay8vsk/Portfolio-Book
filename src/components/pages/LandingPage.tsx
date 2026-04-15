@@ -11,11 +11,11 @@ const LandingPage = React.forwardRef<HTMLDivElement>((_, ref) => {
           </h2>
           <div className="w-12 h-0.5 bg-page-accent/50 mb-5" />
 
-          <p className="text-sm text-page-text/90 leading-relaxed mb-4">
+          <p className="text-sm text-page-text/90 leading-relaxed mb-2">
             A data-driven engineer passionate about building intelligent and scalable systems.
           </p>
 
-          <p className="text-sm text-page-text/90 leading-relaxed mb-4">
+          <p className="text-sm text-page-text/90 leading-relaxed mb-2">
           I specialize in cloud technologies, data engineering, and AI-driven applications,
           focusing on creating impactful solutions that solve real-world problems.
           </p>
