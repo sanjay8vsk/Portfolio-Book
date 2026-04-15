@@ -68,20 +68,20 @@ const Book = () => {
               <div className="absolute inset-6 border border-page-accent/10 rounded-sm" />
 
               <div className="flex flex-col items-center justify-center h-full relative z-10 px-8">
-                <div className="w-16 h-0.5 bg-page-accent/50 mb-8" />
+                <div className="w-20 h-0.5 bg-page-accent/50 mb-8" />
                 <h1 className="text-4xl font-serif text-primary-foreground tracking-wide mb-3">
                   Welcome
                 </h1>
-                <p className="text-base font-book text-primary-foreground/60 tracking-[0.3em] uppercase mb-1">
+                <p className="text-base font-book text-primary-foreground/90 tracking-[0.2em] uppercase mb-1">
                   Sanjay Babu
                 </p>
-                <p className="text-base font-book text-primary-foreground/60 tracking-[0.3em] uppercase mb-3">
+                <p className="text-base font-book text-primary-foreground/90 tracking-[0.2em] uppercase mb-3">
                   Vuddandi
                 </p>
-                <p className="text-xs font-body text-primary-foreground/40 tracking-widest uppercase">
+                <p className="text-xs font-body tracking-[0.35em] text-primary-foreground/85 uppercase">
                   Software Engineer
                 </p>
-                <div className="w-16 h-0.5 bg-page-accent/50 mt-8" />
+                <div className="w-20 h-0.5 bg-page-accent/50 mt-8 box-shadow: 0 0 20px rgba(255, 200, 120, 0.4);" />
 
                 <p className="absolute bottom-6 text-xs font-body text-primary-foreground/30 tracking-[0.3em]">
                   Click to Open
