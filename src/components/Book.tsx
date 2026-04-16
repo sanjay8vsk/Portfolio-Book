@@ -64,8 +64,8 @@ const Book = () => {
 
             {/* Cover */}
             <div className="w-[350px] h-[500px] cover-gradient cover-texture rounded-r-sm rounded-l-md overflow-hidden relative book-shadow animate-pulse-glow group-hover:shadow-[0_0_50px_rgba(180,140,80,0.4)] transition-shadow duration-500">
-              <div className="absolute inset-4 border border-page-accent/25 rounded-sm" />
-              <div className="absolute inset-6 border border-page-accent/10 rounded-sm" />
+              <div className="absolute inset-4 border border-page-accent/55 rounded-sm" />
+              <div className="absolute inset-6 border border-page-accent/35 rounded-sm" />
 
               <div className="flex flex-col items-center justify-center h-full relative z-10 px-8">
                 <div className="w-20 h-0.5 bg-page-accent/50 mb-8" />
@@ -78,19 +78,19 @@ const Book = () => {
                 <p className="text-base font-book text-primary-foreground/60 tracking-[0.2em] uppercase mb-3">
                   Vuddandi
                 </p>
-                <p className="text-xs font-body tracking-[0.35em] text-primary-foreground/85 uppercase">
+                <p className="text-xs font-body tracking-[0.25em] text-primary-foreground/85 uppercase">
                   Software Engineer
                 </p>
                 <div className="w-20 h-0.5 bg-page-accent/50 mt-8 box-shadow: 0 0 20px rgba(255, 200, 120, 0.4);" />
 
-                <p className="absolute bottom-6 text-xs font-body text-primary-foreground/30 tracking-[0.3em]">
+                <p className="absolute bottom-10 text-xs font-body text-primary-foreground/30 tracking-[0.3em]">
                   Click to Open
                 </p>
               </div>
             </div>
 
             {/* Spine edge */}
-            <div className="absolute top-0 bottom-0 left-0 w-2 bg-gradient-to-r from-book-spine to-transparent rounded-l-md" />
+            <div className="absolute top-0 bottom-0 left-0 w-4 bg-gradient-to-r from-book-spine to-transparent rounded-l-md" />
           </div>
         </div>
       </div>
