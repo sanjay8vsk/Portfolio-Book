@@ -72,10 +72,10 @@ const Book = () => {
                 <h1 className="text-4xl font-serif text-primary-foreground tracking-wide mb-3">
                   Welcome
                 </h1>
-                <p className="text-base font-book text-primary-foreground/90 tracking-[0.2em] uppercase mb-1">
+                <p className="text-base font-book text-primary-foreground/60 tracking-[0.2em] uppercase mb-1">
                   Sanjay Babu
                 </p>
-                <p className="text-base font-book text-primary-foreground/90 tracking-[0.2em] uppercase mb-3">
+                <p className="text-base font-book text-primary-foreground/60 tracking-[0.2em] uppercase mb-3">
                   Vuddandi
                 </p>
                 <p className="text-xs font-body tracking-[0.35em] text-primary-foreground/85 uppercase">

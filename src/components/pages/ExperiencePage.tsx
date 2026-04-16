@@ -28,7 +28,8 @@ const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
             <div key={exp.role} className="relative pl-6 border-l-2 border-page-accent/30">
               <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-page-accent" />
               <h3 className="text-base font-serif text-page-text">{exp.role}</h3>
-              <p className="text-sm font-book text-page-accent">{exp.company} · {exp.period}</p>
+              <p className="text-sm font-book text-page-accent mt-0.2">{exp.company}</p>
+              <p className="text-xs text-page-text/70 mt-0.5"> {exp.period} </p>
               <p className="text-sm font-book text-page-text/70 mt-2">{exp.description}</p>
             </div>
           ))}
