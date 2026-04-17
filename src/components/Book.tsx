@@ -63,7 +63,7 @@ const Book = () => {
             <div className="absolute left-1 -bottom-1.5 right-0 h-2 bg-gradient-to-b from-page/70 to-page/50 rounded-b-sm" />
 
             {/* Cover */}
-            <div className="w-[350px] h-[500px] cover-gradient cover-texture rounded-r-sm rounded-l-md overflow-hidden relative book-shadow animate-pulse-glow group-hover:shadow-[0_0_50px_rgba(180,140,80,0.4)] transition-shadow duration-500">
+            <div className="w-[85vw] max-w-[400px] aspect-[3/4] cover-gradient cover-texture rounded-r-sm rounded-l-md overflow-hidden relative book-shadow animate-pulse-glow group-hover:shadow-[0_0_50px_rgba(180,140,80,0.4)] transition-shadow duration-500">
               <div className="absolute inset-4 border border-page-accent/55 rounded-sm" />
               <div className="absolute inset-6 border border-page-accent/35 rounded-sm" />
 
@@ -98,9 +98,10 @@ const Book = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background relative overflow-hidden">
+    <div className="h-screen w-screen flex flex-col items-center justify-center bg-background overflow-hidden px-4">
       {/* Book container */}
-      <div className="relative book-shadow rounded-sm">
+      <div className="relative book-shadow rounded-sm flex justify-center bg-transparent">
+        <div className="scale-[0.6] sm:scale-[0.85] md:scale-100 origin-center w-fit">
         {/* Spine shadow overlay */}
         <div className="spine-shadow z-20" />
 
@@ -120,7 +121,7 @@ const Book = () => {
           onFlip={onFlip}
           onInit={onInit}
           className="book-flipbook"
-          style={{}}
+          style={{ backgroundColor: "transparent" }}
           startPage={0}
           drawShadow={true}
           flippingTime={800}
@@ -146,6 +147,7 @@ const Book = () => {
           <ContactPage />
           <BackCover />
         </HTMLFlipBook>
+        </div>
       </div>
 
       {/* Navigation */}
