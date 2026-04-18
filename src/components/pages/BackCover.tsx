@@ -7,7 +7,7 @@ const BackCover = React.forwardRef<HTMLDivElement>((_, ref) => {
         <div className="absolute inset-4 border border-page-accent/20 rounded-sm" />
         <div className="text-center z-10">
           <div className="w-10 h-0.5 bg-page-accent/40 mx-auto mb-6" />
-          <p className="text-sm font-body text-primary-foreground/50 tracking-[0.3em] uppercase">
+          <p className="text-xl font-body text-page-accent/80 tracking-[0.3em] uppercase">
             Thank You
           </p>
           <div className="w-10 h-0.5 bg-page-accent/40 mx-auto mt-6" />

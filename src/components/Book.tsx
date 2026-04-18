@@ -101,15 +101,15 @@ const Book = () => {
     <div className="h-screen w-screen flex flex-col items-center justify-center bg-background overflow-hidden px-4">
       {/* Book container */}
       <div className="relative book-shadow rounded-sm flex justify-center bg-transparent">
-        <div className="scale-[0.6] sm:scale-[0.85] md:scale-100 origin-center w-fit">
+        <div className="scale-[0.6] sm:scale-[0.85] md:scale-100 origin center">
         {/* Spine shadow overlay */}
         <div className="spine-shadow z-20" />
 
         {/* @ts-ignore - react-pageflip types */}
         <HTMLFlipBook
           ref={bookRef}
-          width={400}
-          height={550}
+          width={Math.min(window.innerWidth - 32, 400)}
+          height={(Math.min(window.innerWidth - 32, 400) * 550) / 400}
           size="stretch"
           minWidth={300}
           maxWidth={500}

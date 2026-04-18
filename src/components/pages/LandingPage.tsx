@@ -2,8 +2,8 @@ import React from "react";
 
 const LandingPage = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <div ref={ref} className="book-page">
-      <div className="book-page-inner p-8 md:p-12 pt-8 flex flex-col justify-start">
+    <div ref={ref} className="book-page will-change-transform">
+      <div className="book-page-inner p-8 md:p-12 flex flex-col justify-start pt-8">
         <div className="page-lines absolute inset-0 pointer-events-none opacity-30" />
         <div className="relative z-10 -mt-10">
           <h2 className="text-2xl md:text-3xl font-serif text-page-text mb-3 leading-tight">
