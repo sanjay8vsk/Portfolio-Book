@@ -3,10 +3,11 @@ import React from "react";
 const ResumePage = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner book-page-inner-right p-8 md:p-12 flex flex-col items-center justify-center text-center">
-        <p className="text-sm font-body text-page-accent tracking-[0.3em] uppercase mb-2">Chapter VII</p>
-        <h2 className="text-3xl font-serif text-page-text mb-6">Resume</h2>
-        <div className="w-12 h-0.5 bg-page-accent/50 mb-8" />
+      <div className="book-page-inner p-5 md:p-8 flex flex-col">
+        <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1 ml-4">Chapter VII</p>
+        <h2 className="text-xl font-serif text-page-text mb-3 ml-4">Resume</h2>
+        <div className="space-y-2.5 ml-4">
+        <div className="w-12 h-0.5 bg-page-accent/50 mb-3" />
         
         <div className="w-32 h-44 border-2 border-page-accent/30 rounded-sm flex items-center justify-center mb-8 bg-page-accent/5">
           <div className="text-center">
@@ -16,8 +17,8 @@ const ResumePage = React.forwardRef<HTMLDivElement>((_, ref) => {
             <p className="text-xs font-body text-page-text/40">PDF</p>
           </div>
         </div>
-
-        <p className="text-base font-book text-page-text/70 mb-8 max-w-xs">
+        </div>
+        <p className="text-base font-book text-page-text/70 mb-8 max-w-xs text-center">
           Download my complete resume with detailed work history, skills, and certifications.
         </p>
 
@@ -28,7 +29,7 @@ const ResumePage = React.forwardRef<HTMLDivElement>((_, ref) => {
           Download Resume
         </button>
 
-        <p className="absolute bottom-6 left-8 text-xs font-body text-page-text/30">8</p>
+        <p className="absolute bottom-6 right-8 text-xs font-body text-page-text/30">8</p>
       </div>
     </div>
   );
