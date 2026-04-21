@@ -12,9 +12,10 @@ const HobbiesPage = React.forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner p-8 md:p-12 flex flex-col">
-        <p className="text-sm font-body text-page-accent tracking-[0.3em] uppercase mb-2">Chapter VIII</p>
-        <h2 className="text-3xl font-serif text-page-text mb-6">Hobbies</h2>
+      <div className="book-page-inner p-5 md:p-8 flex flex-col">
+        <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter VIII</p>
+        <h2 className="text-xl font-serif text-page-text mb-3">Hobbies</h2>
+        <div className="space-y-2.5">
         <div className="w-12 h-0.5 bg-page-accent/50 mb-6" />
         <div className="grid grid-cols-2 gap-4 flex-1 content-start">
           {hobbies.map((hobby) => (
@@ -24,6 +25,7 @@ const HobbiesPage = React.forwardRef<HTMLDivElement>((_, ref) => {
               <p className="text-xs font-book text-page-text/60 mt-1">{hobby.description}</p>
             </div>
           ))}
+        </div>
         </div>
         <p className="absolute bottom-6 right-8 text-xs font-body text-page-text/30">9</p>
       </div>
