@@ -15,7 +15,7 @@ const HobbiesPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         <h2 className="text-xl font-serif text-page-text mb-3">Hobbies</h2>
         <div className="space-y-2.5">
         <div className="w-12 h-0.5 bg-page-accent/50 mb-6" />
-        <div className="grid grid-cols-2 gap-4 items-stretch mb-6">
+        <div className="grid grid-cols-2 gap-4 items-stretch mb-6 mr-4">
           {hobbies.map((hobby) => (
             <div key={hobby.name} className="p-2 border border-page-accent/15 rounded-sm text-center bg-page-accent/5 h-[115px] flex flex-col justify-between">
               <span className="text-xl mb-1">{hobby.icon}</span>
