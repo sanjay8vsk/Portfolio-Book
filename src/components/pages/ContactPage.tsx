@@ -25,7 +25,7 @@ const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="block p-1.5 border border-page-accent/15 rounded-sm hover:bg-page-accent/10 transition-colors duration-300"
+              className="block p-0.25 border border-page-accent/15 rounded-sm hover:bg-page-accent/10 transition-colors duration-300"
             >
               <p className="text-[10px] font-body text-page-accent uppercase tracking-[0.15em]">{link.label}</p>
               <p className="text-xs font-book text-page-text/70 mt-0.5">{link.value}</p>
@@ -36,7 +36,7 @@ const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         <p className="mt-4 text-xs font-body text-page-text/30 italic">
           — The End —
         </p>
-        <p className="absolute bottom-6 left-8 text-xs font-body text-page-text/30">10</p>
+        <p className="absolute bottom-6 right-9 text-xs font-body text-page-text/30">10</p>
       </div>
     </div>
   );
