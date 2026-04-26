@@ -5,8 +5,8 @@ const CoverPage = React.forwardRef<HTMLDivElement>((_, ref) => {
     <div ref={ref} className="book-page">
       <div className="cover-gradient cover-texture h-full w-full flex flex-col items-center justify-center relative overflow-hidden">
         {/* Decorative border */}
-        <div className="absolute inset-6 border border-page-accent/60 rounded-sm" />
-        <div className="absolute inset-8 border border-page-accent/45 rounded-sm" />
+        <div className="absolute inset-8 border border-page-accent/60 rounded-sm" />
+        <div className="absolute inset-6 border border-page-accent/45 rounded-sm" />
         
         {/* Content */}
         <div className="text-center z-10 px-8">
