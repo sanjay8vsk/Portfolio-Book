@@ -16,8 +16,8 @@ const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         <div className="space-y-1.5 w-full max-w-[240px] md:max-w-xs justify-center text-center">
           {[
             { label: "Email", value: "sanjay8vsk@gmail.com", href: "mailto:sanjay8vsk@gmail.com" },
-            { label: "LinkedIn", value: "linkedin.com/in/sanjuu", href: "#" },
-            { label: "GitHub", value: "github.com/sanjuu", href: "#" },
+            { label: "LinkedIn", value: "linkedin.com/sanjaybabu", href: "https://www.linkedin.com/in/sanjaybabuvuddandi/" },
+            { label: "GitHub", value: "github.com/sanjuu", href: "https://github.com/sanjay8vsk" },
             { label: "Instagram", value: "de__sanjay", href: "https://www.instagram.com/de__sanjay/" },
           ].map((link) => (
             <a
