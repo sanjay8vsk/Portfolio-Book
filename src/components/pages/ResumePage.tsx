@@ -14,7 +14,7 @@ const ResumePage = React.forwardRef<HTMLDivElement>((_, ref) => {
         </p>
 
         <button
-          onClick={() => window.open("#", "_blank")}
+          onClick={() => window.open("/SANJAY_CV_SE.pdf", "_blank")}
           className="w-[180px] px-5 py-3 border-2 border-page-accent/40 text-page-accent font-body text-sm uppercase tracking-[0.15em] mx-auto block hover:bg-page-accent/10 hover:scale-[1.02] transition-all duration-300"
         >
           Download Resume
