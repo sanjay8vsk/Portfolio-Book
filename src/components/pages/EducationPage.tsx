@@ -6,11 +6,11 @@ const EducationPage = React.forwardRef<HTMLDivElement>((_, ref) => {
       degree: "Master of Data Science",
       school: "University of Skövde",
       year: "2025 - 2027",
-      details: "Focused on Machine Learning, Data Engineering, and Scalable Systems.",
+      details: "Focused on AI, Machine Learning, Data Engineering, and Scalable Systems.",
     },
     {
       degree: "Bachelor of Technology",
-      school: "MIT",
+      school: "Jawaharlal Nehru Technological University Anantapur (JNTUA)",
       year: "2020 - 2024",
       details: "Strong foundation in Computer Science, Data Structures, and Algorithms.",
     },

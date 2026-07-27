@@ -3,9 +3,9 @@ import React from "react";
 const ExperiencePage = React.forwardRef<HTMLDivElement>((_, ref) => {
   const experiences = [
     {
-      role: "Cloud Engineer",
-      company: "HeproAi",
-      period: "March 2026 - Present",
+      role: "Full Stack AI Developer",
+      company: "Gaddr",
+      period: "July 2026 - Present",
       description: "Leading the design system team, building scalable UI components used across multiple products.",
     },
     {

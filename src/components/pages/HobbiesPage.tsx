@@ -2,9 +2,9 @@ import React from "react";
 
 const HobbiesPage = React.forwardRef<HTMLDivElement>((_, ref) => {
   const hobbies = [
-    { name: "Games", icon: "🎮", description: "Gaming across PS5, PC, and mobile platforms" },
+    { name: "Gaming", icon: "🎮", description: "Gaming across PS5, PC, and mobile platforms" },
     { name: "Chess", icon: "♟️", description: "Strategy games and competitive play" },
-    { name: "Cooking", icon: "🍳", description: "Experimenting with world cuisines" },
+    { name: "Content Creation", icon: "✨", description: "Creating engaging content" },
     { name: "Coding", icon: "💻", description: "Building applications and solving problems" },
   ];
 

@@ -9,7 +9,7 @@ const AboutPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         <div className="w-12 h-0.5 bg-page-accent/50 mb-4 ml-4" />
         <div className="font-book text-page-text/80 leading-[1.4] space-y-3 text-sm max-w-[95%] mx-auto ml-4">
           <p>
-            Currently pursuing my Master's in Data Science, with interests at the intersection of cloud computing, data engineering, and artificial intelligence.
+            Currently pursuing my Master's in Data Science, with interests at the intersection of cloud, data engineering, and artificial intelligence.
           </p>
           <p>
             I enjoy building data-driven applications and working with modern technologies to create scalable and impactful solutions.

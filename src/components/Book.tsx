@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState, useRef, useCallback } from "react";
 import HTMLFlipBook from "react-pageflip";
 import CoverPage from "./pages/CoverPage";
@@ -69,8 +71,8 @@ const Book = () => {
 
               <div className="flex flex-col items-center justify-center h-full relative z-10 px-8">
                 <div className="w-20 h-0.5 bg-page-accent/50 mb-8" />
-                <h1 className="text-4xl font-serif text-primary-foreground tracking-wide mb-3">
-                  Welcome
+                <h1 className="text-2xl font-serif text-primary-foreground tracking-wide mb-3">
+                  The Portfolio of
                 </h1>
                 <p className="text-base font-book text-primary-foreground/60 tracking-[0.2em] uppercase mb-1">
                   Sanjay Babu
@@ -79,12 +81,15 @@ const Book = () => {
                   Vuddandi
                 </p>
                 <p className="text-xs font-body tracking-[0.25em] text-primary-foreground/85 uppercase">
-                  Software Engineer
+                  AI & Software Engineer
                 </p>
-                <div className="w-20 h-0.5 bg-page-accent/50 mt-8 box-shadow: 0 0 20px rgba(255, 200, 120, 0.4);" />
+                <div
+                className="w-20 h-0.5 bg-page-accent/50 mt-8"
+                style={{ boxShadow: "0 0 20px rgba(255,200,120,0.4)" }}
+                />
 
                 <p className="absolute bottom-10 text-xs font-body text-primary-foreground/30 tracking-[0.3em]">
-                  Click to Open
+                  Begin Reading &rarr;
                 </p>
               </div>
             </div>
@@ -105,7 +110,7 @@ const Book = () => {
         {/* Spine shadow overlay */}
         <div className="spine-shadow z-20" />
 
-        {/* @ts-ignore - react-pageflip types */}
+        
         <HTMLFlipBook
           ref={bookRef}
           width={Math.min(window.innerWidth - 32, 400)}
