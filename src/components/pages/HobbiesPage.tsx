@@ -10,7 +10,7 @@ const HobbiesPage = React.forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner p-5 md:p-8 flex flex-col mb-6">
+      <div className="book-page-inner p-8 flex flex-col mb-6">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter VIII</p>
         <h2 className="text-xl font-serif text-page-text mb-3">Hobbies</h2>
         <div className="space-y-2.5">
@@ -25,7 +25,7 @@ const HobbiesPage = React.forwardRef<HTMLDivElement>((_, ref) => {
           ))}
         </div>
         </div>
-        <p className="absolute bottom-6 right-12 text-xs font-body text-page-text/30">9</p>
+        <p className="absolute bottom-6 right-10 text-xs font-body text-page-text/30">9</p>
       </div>
     </div>
   );

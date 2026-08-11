@@ -3,7 +3,7 @@ import React from "react";
 const ResumePage = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner p-5 md:p-8 flex flex-col">
+      <div className="book-page-inner p-8 flex flex-col">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1 ml-4">Chapter VII</p>
         <h2 className="text-xl font-serif text-page-text mb-3 ml-4">Resume</h2>
         <div className="space-y-2.5 ml-4">

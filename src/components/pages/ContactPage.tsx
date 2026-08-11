@@ -3,7 +3,7 @@ import React from "react";
 const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner p-5 md:p-8 flex flex-col mb-6">
+      <div className="book-page-inner px-8 py-5 flex flex-col">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1 ml-4">Chapter IX</p>
         <h2 className="text-xl font-serif text-page-text mb-3 ml-4">Get In Touch</h2>
         <div className="w-12 h-0.5 bg-page-accent/50 mb-3 ml-4" />
@@ -13,7 +13,7 @@ const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
           or just a friendly hello, feel free to reach out.
         </p>
 
-        <div className="space-y-1.5 w-full max-w-[240px] md:max-w-xs justify-center text-center">
+        <div className="space-y-1 w-full max-w-[240px] md:max-w-xs justify-center text-center">
           {[
             { label: "Email", value: "sanjay8vsk@gmail.com", href: "mailto:sanjay8vsk@gmail.com" },
             { label: "LinkedIn", value: "linkedin.com/sanjaybabu", href: "https://www.linkedin.com/in/sanjaybabuvuddandi/" },
@@ -23,11 +23,18 @@ const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
             <a
               key={link.label}
               href={link.href}
-              target="_blank"
+              /* mailto: must open in the mail client, not a blank tab */
+              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
               rel="noopener noreferrer"
-              className="block p-0.25 border border-page-accent/15 rounded-sm hover:bg-page-accent/10 transition-colors duration-300"
+              /* [&_p]:pointer-events-none keeps the <a> itself as the event
+                 target, so react-pageflip's clickEventForward sees a link and
+                 skips the flip. Without it the inner <p> is the target and the
+                 library treats the click as a page turn. */
+              className="block p-1 border border-page-accent/15 rounded-sm hover:bg-page-accent/10 transition-colors duration-300 [&_p]:pointer-events-none"
             >
-              <p className="text-[10px] font-body text-page-accent uppercase tracking-[0.15em]">{link.label}</p>
+              {/* 11px below md for legibility on phones; md and up keeps the
+                  authored 10px. 12px pushes "The End" below the page number. */}
+              <p className="text-[11px] md:text-[10px] font-body text-page-accent uppercase tracking-[0.15em]">{link.label}</p>
               <p className="text-xs font-book text-page-text/70 mt-0.5">{link.value}</p>
             </a>
           ))}
@@ -36,7 +43,7 @@ const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
         <p className="mt-4 text-xs font-body text-page-text/30 italic text-center">
           — The End —
         </p>
-        <p className="absolute bottom-6 right-9 text-xs font-body text-page-text/30">10</p>
+        <p className="absolute bottom-6 right-10 text-xs font-body text-page-text/30">10</p>
       </div>
     </div>
   );

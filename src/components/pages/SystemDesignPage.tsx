@@ -14,7 +14,7 @@ const SystemDesignPage = React.forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner p-5 md:p-8 flex flex-col">
+      <div className="book-page-inner p-8 flex flex-col">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter VI</p>
         <h2 className="text-xl font-serif text-page-text mb-3">System Design</h2>
         <div className="space-y-2.5">
@@ -30,7 +30,7 @@ const SystemDesignPage = React.forwardRef<HTMLDivElement>((_, ref) => {
             </div>
           ))}
         </div>
-        <p className="absolute bottom-6 right-12 text-xs font-body text-page-text/30">7</p>
+        <p className="absolute bottom-6 right-10 text-xs font-body text-page-text/30">7</p>
       </div>
     </div>
   );

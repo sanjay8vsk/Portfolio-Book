@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -72,6 +72,17 @@
                 inset -2px 0 5px -2px rgba(0, 0, 0, 0.05);
   }
 
+  /* Pages are authored against a 600px book (300px page). When the book shrinks
+     below that, scale the page's contents by the same continuous factor so the
+     layout stays proportional instead of overflowing. --page-scale is 1 on
+     desktop, making this a no-op there. */
+  .book-page > :first-child {
+    width: calc(100% / var(--page-scale, 1));
+    height: calc(100% / var(--page-scale, 1));
+    transform: scale(var(--page-scale, 1));
+    transform-origin: top left;
+  }
+
   .book-page-inner-right {
     box-shadow: inset -7px 0 15px -7px rgba(0, 0, 0, 0.15),
                 inset 2px 0 5px -2px rgba(0, 0, 0, 0.05);
@@ -89,6 +100,53 @@
   .book-shadow {
     box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5),
                 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Full viewport height, with dvh so mobile browser chrome can't clip content.
+     The vh declaration is the fallback for browsers without dvh support. */
+  .viewport-h {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .viewport-min-h {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* Definite width for the flipbook parent so react-pageflip's size="stretch"
+     has something to resolve against (it sizes from parent offsetWidth).
+     The book is 1.4545:1, so every height bound is converted to a width bound.
+     - 100vw - 0.75rem: hard no-overflow bound. On phones the book is width-
+                        limited, so this is what sets the readable text size.
+     - 92vw + 1.5rem  : keeps the side margin growing with the viewport on
+                        larger screens. Together with the term above the margin
+                        eases from ~6px on a phone to ~4vw on a tablet, with no
+                        breakpoint jump. Neither term binds at >=1024px.
+     - 900px          : upper bound on the desktop book
+     - 68dvh * ratio  : leaves comfortable vertical margins above the book and
+                        room for the nav row below it
+     - (100dvh - 7rem): hard floor guaranteeing the nav stays on screen on very
+                        short viewports, where 7rem is the nav row + gap */
+  .book-frame {
+    width: min(100vw - 0.75rem, 92vw + 1.5rem, 900px, 68vh * 1.4545, (100vh - 7rem) * 1.4545);
+    width: min(100vw - 0.75rem, 92vw + 1.5rem, 900px, 68dvh * 1.4545, (100dvh - 7rem) * 1.4545);
+  }
+
+  /* Closed cover is aspect-[3/4]; bounding width by height keeps the whole
+     cover visible on short landscape screens without distorting it. */
+  .cover-frame {
+    width: min(85vw, 400px, 60vh);
+    width: min(85vw, 400px, 60dvh);
+  }
+
+  /* Same proportional scaling as the book pages, for the closed cover's
+     contents. --cover-scale is 1 at the cover's authored 400px width. */
+  .cover-frame > .cover-content {
+    width: calc(100% / var(--cover-scale, 1));
+    height: calc(100% / var(--cover-scale, 1));
+    transform: scale(var(--cover-scale, 1));
+    transform-origin: top left;
   }
 
   .spine-shadow {
@@ -144,6 +202,12 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-glow {
+    animation: none;
+  }
 }
 
 html, body {

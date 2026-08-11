@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
+import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from "react";
 import HTMLFlipBook from "react-pageflip";
 import CoverPage from "./pages/CoverPage";
 import LandingPage from "./pages/LandingPage";
@@ -15,15 +16,47 @@ import HobbiesPage from "./pages/HobbiesPage";
 import ContactPage from "./pages/ContactPage";
 import BackCover from "./pages/BackCover";
 
+/* The book renders as a two-page spread (usePortrait={false}), so react-pageflip's
+   page index advances by two per turn. These convert that index into the spread
+   number the reader actually sees: cover, five spreads, back cover. */
+const toSpread = (pageIndex: number) => Math.ceil(pageIndex / 2) + 1;
+const countSpreads = (pages: number) => Math.ceil(pages / 2) + 1;
+
+/* Width the pages are authored against. The book never renders wider than this;
+   below it, page contents scale by the same factor (see --page-scale). */
+const BOOK_DESIGN_WIDTH = 600;
+const COVER_DESIGN_WIDTH = 400;
+
 const Book = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(12);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [pageScale, setPageScale] = useState(1);
+  const [coverScale, setCoverScale] = useState(1);
   const bookRef = useRef<any>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const coverRef = useRef<HTMLDivElement>(null);
 
   const handleOpenBook = useCallback(() => {
     setIsOpen(true);
   }, []);
+
+  const handleCloseBook = useCallback(() => {
+    setIsOpen(false);
+    // The flipbook remounts at startPage={0}, so the counter must follow it.
+    setCurrentPage(0);
+  }, []);
+
+  const handleCoverKeyDown = useCallback(
+    (e: ReactKeyboardEvent<HTMLDivElement>) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setIsOpen(true);
+      }
+    },
+    [],
+  );
 
   const onFlip = useCallback((e: any) => {
     setCurrentPage(e.data);
@@ -41,10 +74,73 @@ const Book = () => {
     bookRef.current?.pageFlip()?.flipPrev();
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) return;
+    const el = coverRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const update = () => {
+      const width = el.getBoundingClientRect().width;
+      if (width > 0) setCoverScale(Math.min(1, width / COVER_DESIGN_WIDTH));
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isOpen]);
+
+  /* Keep page contents proportional to the rendered book width. Measured rather
+     than derived in CSS because CSS cannot divide one length by another. */
+  useEffect(() => {
+    if (!isOpen) return;
+    const el = frameRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const update = () => {
+      const width = el.getBoundingClientRect().width;
+      /* Not clamped to 1: above the design width the pages scale up too, so a
+         larger book is a pure zoom and page proportions stay identical. */
+      if (width > 0) setPageScale(width / BOOK_DESIGN_WIDTH);
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        flipNext();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        flipPrev();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, flipNext, flipPrev]);
+
   if (!isOpen) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="relative cursor-pointer group" onClick={handleOpenBook}>
+      <div className="viewport-min-h flex items-center justify-center bg-background py-8">
+        <div
+          className="relative cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-page-accent/60 rounded-md"
+          onClick={handleOpenBook}
+          onKeyDown={handleCoverKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-label="Open the portfolio of Sanjay Babu Vuddandi"
+        >
           {/* Book shadow */}
           <div className="absolute -bottom-6 left-4 right-4 h-8 bg-foreground/20 blur-xl rounded-full" />
 
@@ -65,11 +161,15 @@ const Book = () => {
             <div className="absolute left-1 -bottom-1.5 right-0 h-2 bg-gradient-to-b from-page/70 to-page/50 rounded-b-sm" />
 
             {/* Cover */}
-            <div className="w-[85vw] max-w-[400px] aspect-[3/4] cover-gradient cover-texture rounded-r-sm rounded-l-md overflow-hidden relative book-shadow animate-pulse-glow group-hover:shadow-[0_0_50px_rgba(180,140,80,0.4)] transition-shadow duration-500">
+            <div
+              ref={coverRef}
+              className="cover-frame aspect-[3/4] cover-gradient cover-texture rounded-r-sm rounded-l-md overflow-hidden relative book-shadow animate-pulse-glow group-hover:shadow-[0_0_50px_rgba(180,140,80,0.4)] transition-shadow duration-500"
+              style={{ "--cover-scale": coverScale } as CSSProperties}
+            >
               <div className="absolute inset-4 border border-page-accent/55 rounded-sm" />
               <div className="absolute inset-6 border border-page-accent/35 rounded-sm" />
 
-              <div className="flex flex-col items-center justify-center h-full relative z-10 px-8">
+              <div className="cover-content flex flex-col items-center justify-center h-full relative z-10 px-8">
                 <div className="w-20 h-0.5 bg-page-accent/50 mb-8" />
                 <h1 className="text-2xl font-serif text-primary-foreground tracking-wide mb-3">
                   The Portfolio of
@@ -103,33 +203,46 @@ const Book = () => {
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-background overflow-hidden px-4">
-      {/* Book container */}
-      <div className="relative book-shadow rounded-sm flex justify-center bg-transparent">
-        <div className="scale-[0.6] sm:scale-[0.85] md:scale-100 origin center">
+    <div className="viewport-h w-full flex flex-col items-center justify-center bg-background overflow-hidden px-4">
+      {/* Book container. The width lives here (.book-frame) so react-pageflip's
+          size="stretch" has a definite parent width to size itself from, and so
+          the shadow stays attached to the book at every viewport size. */}
+      {/* Not a flex container: as a flex item the flipbook's min-width:auto
+          floors it at its 600px content width and it ignores the frame. */}
+      <div
+        ref={frameRef}
+        className="book-frame relative book-shadow rounded-sm bg-transparent"
+        style={{ "--page-scale": pageScale } as CSSProperties}
+      >
         {/* Spine shadow overlay */}
         <div className="spine-shadow z-20" />
 
-        
         <HTMLFlipBook
           ref={bookRef}
-          width={Math.min(window.innerWidth - 32, 400)}
-          height={(Math.min(window.innerWidth - 32, 400) * 550) / 400}
+          /* width/height define the page aspect ratio only; size="stretch"
+             derives the rendered size from the parent's width. */
+          width={400}
+          height={550}
           size="stretch"
-          minWidth={300}
-          maxWidth={500}
-          minHeight={420}
-          maxHeight={600}
+          /* These are per-page bounds; the library doubles them for the book.
+             minWidth must stay low or its inline min-width floors the book and
+             it can't shrink. maxWidth={450} allows the 900px book cap. */
+          minWidth={120}
+          maxWidth={450}
+          minHeight={165}
+          maxHeight={620}
           maxShadowOpacity={0.5}
           showCover={true}
-          mobileScrollSupport={false}
+          /* Must stay true: with false, react-pageflip registers touchmove as
+             passive and never drives a flip, which kills tap/swipe on mobile. */
+          mobileScrollSupport={true}
           onFlip={onFlip}
           onInit={onInit}
           className="book-flipbook"
           style={{ backgroundColor: "transparent" }}
           startPage={0}
           drawShadow={true}
-          flippingTime={800}
+          flippingTime={reducedMotion ? 200 : 800}
           usePortrait={false}
           startZIndex={0}
           autoSize={true}
@@ -152,32 +265,42 @@ const Book = () => {
           <ContactPage />
           <BackCover />
         </HTMLFlipBook>
-        </div>
       </div>
 
       {/* Navigation */}
-      <div className="flex items-center gap-6 mt-8">
+      {/* gap-3 on the narrowest phones keeps Prev/counter/Next on one line;
+          sm and up keeps the original gap-6 spacing. */}
+      <nav className="flex items-center gap-3 sm:gap-6 mt-8" aria-label="Page navigation">
         <button
           onClick={flipPrev}
+          aria-label="Previous page"
           className="px-5 py-2 text-sm font-body text-foreground/60 border border-foreground/20 rounded-sm hover:bg-foreground/10 hover:text-foreground transition-all duration-300 uppercase tracking-[0.15em]"
         >
           ← Prev
         </button>
-        <span className="text-xs font-body text-foreground/40 tracking-wider">
-          {currentPage + 1} / 12
+        <span
+          className="text-xs font-body text-foreground/40 tracking-wider"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {toSpread(currentPage)} / {countSpreads(totalPages)}
         </span>
         <button
           onClick={flipNext}
+          aria-label="Next page"
           className="px-5 py-2 text-sm font-body text-foreground/60 border border-foreground/20 rounded-sm hover:bg-foreground/10 hover:text-foreground transition-all duration-300 uppercase tracking-[0.15em]"
         >
           Next →
         </button>
-      </div>
+      </nav>
 
-      {/* Close book button */}
+      {/* Close book button. On phones it joins the centred stack above the book
+          so the controls read as one group; from sm up it keeps its original
+          fixed position in the top-right corner. */}
       <button
-        onClick={() => setIsOpen(false)}
-        className="absolute top-6 right-6 text-xs font-body text-foreground/40 hover:text-foreground/70 transition-colors uppercase tracking-[0.2em]"
+        onClick={handleCloseBook}
+        aria-label="Close the book and return to the cover"
+        className="order-first self-end mb-4 sm:absolute sm:top-6 sm:right-6 sm:order-none sm:self-auto sm:mb-0 text-xs font-body text-foreground/40 hover:text-foreground/70 transition-colors uppercase tracking-[0.2em]"
       >
         Close Book
       </button>

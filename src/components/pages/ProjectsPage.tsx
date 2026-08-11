@@ -16,7 +16,7 @@ const ProjectsPage = React.forwardRef<HTMLDivElement>((_, ref) => {
 
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner book-page-inner-right p-5 md:p-8 flex flex-col">
+      <div className="book-page-inner book-page-inner-right p-8 flex flex-col">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1 ml-3">Chapter V</p>
         <h2 className="text-xl font-serif text-page-text mb-3 ml-3">Projects</h2>
         <div className="space-y-3 ml-3">
