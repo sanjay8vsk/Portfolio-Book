@@ -5,9 +5,16 @@ const LandingPage = React.forwardRef<HTMLDivElement>((_, ref) => {
     <div ref={ref} className="book-page will-change-transform">
       <div className="book-page-inner px-12 pt-12 pb-6 flex flex-col justify-start">
         <div className="page-lines absolute inset-0 pointer-events-none opacity-30" />
-        <div className="relative z-10 -mt-10">
+        {/* The h2 is text-2xl on mobile vs md:text-3xl on desktop, so its
+            two-line block is 12 design px shorter on mobile and this divider
+            rose to 80 while About Me's stayed at 96. -mt-6 (-24px) instead of
+            -mt-10 (-40px) restores exactly the measured 16px on mobile only. */}
+        <div className="relative z-10 -mt-6 md:-mt-10">
           <h2 className="text-2xl md:text-3xl font-serif text-page-text mb-3 leading-tight">
-            Hello, I'm <span className="text-page-accent">Sanjay Babu</span>
+            {/* At the smaller mobile type size "Hello, I'm Sanjay" fits the line,
+                so the natural break fell inside the name. Keeping the name
+                unbreakable forces the break before it, matching desktop. */}
+            Hello, I'm <span className="text-page-accent whitespace-nowrap md:whitespace-normal">Sanjay Babu</span>
           </h2>
           <div className="w-12 h-0.5 bg-page-accent/50 mb-5" />
 

@@ -21,7 +21,10 @@ const EducationPage = React.forwardRef<HTMLDivElement>((_, ref) => {
       <div className="book-page-inner p-8 flex flex-col">
         <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter II</p>
         <h2 className="text-xl font-serif text-page-text mb-3">Education</h2>
-        <div className="w-12 h-0.5 bg-page-accent/50 mb-6"></div>
+        {/* shrink-0: this divider is a direct child of the flex-col page, so the
+            default flex-shrink compressed its 2px height (to 0 on mobile).
+            Skills' divider sits inside a wrapper and is not a flex item. */}
+        <div className="w-12 h-0.5 shrink-0 bg-page-accent/50 mb-6"></div>
         <div className="space-y-4">
           {education.map((edu) => (
             <div key={edu.degree} className="relative pl-4 border-l border-page-accent/30">
