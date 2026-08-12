@@ -3,12 +3,15 @@ import React from "react";
 const ContactPage = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref} className="book-page">
-      <div className="book-page-inner px-8 py-5 flex flex-col">
-        <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1 ml-4">Chapter IX</p>
-        <h2 className="text-xl font-serif text-page-text mb-3 ml-4">Get In Touch</h2>
-        <div className="w-12 h-0.5 bg-page-accent/50 mb-3 ml-4" />
+      <div className="book-page-inner px-8 pt-8 pb-5 flex flex-col">
+        <p className="text-sm font-body text-page-accent tracking-[0.2em] uppercase mb-1">Chapter IX</p>
+        <h2 className="text-xl font-serif text-page-text mb-3">Get In Touch</h2>
+        {/* shrink-0: this divider is a direct child of the flex-col page, so the
+            default flex-shrink crushed its 2px height to under 0.5px (to 0 on
+            mobile). Hobbies' divider sits inside a wrapper and is unaffected. */}
+        <div className="w-12 h-0.5 shrink-0 bg-page-accent/50 mb-3" />
 
-        <p className="text-sm font-book text-page-text/70 mb-5 max-w-[240px] justify-center text-center">
+        <p className="text-sm font-book text-page-text/70 mb-2 max-w-[240px] justify-center text-center">
           I'd love to hear from you. Whether it's a project, job opportunity, 
           or just a friendly hello, feel free to reach out.
         </p>
