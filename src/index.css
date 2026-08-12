@@ -117,11 +117,13 @@
   /* Definite width for the flipbook parent so react-pageflip's size="stretch"
      has something to resolve against (it sizes from parent offsetWidth).
      The book is 1.4545:1, so every height bound is converted to a width bound.
-     - 100vw - 0.75rem: hard no-overflow bound. On phones the book is width-
-                        limited, so this is what sets the readable text size.
+     - 100vw - 1.75rem: hard no-overflow bound, and it sets the phone side
+                        margin (14px each side) so the book is not stuck to the
+                        screen edges. On phones the book is width-limited, so
+                        this also sets the readable text size.
      - 92vw + 1.5rem  : keeps the side margin growing with the viewport on
                         larger screens. Together with the term above the margin
-                        eases from ~6px on a phone to ~4vw on a tablet, with no
+                        eases from 14px on a phone to ~4vw on a tablet, with no
                         breakpoint jump. Neither term binds at >=1024px.
      - 900px          : upper bound on the desktop book
      - 68dvh * ratio  : leaves comfortable vertical margins above the book and
@@ -129,8 +131,8 @@
      - (100dvh - 7rem): hard floor guaranteeing the nav stays on screen on very
                         short viewports, where 7rem is the nav row + gap */
   .book-frame {
-    width: min(100vw - 0.75rem, 92vw + 1.5rem, 900px, 68vh * 1.4545, (100vh - 7rem) * 1.4545);
-    width: min(100vw - 0.75rem, 92vw + 1.5rem, 900px, 68dvh * 1.4545, (100dvh - 7rem) * 1.4545);
+    width: min(100vw - 1.75rem, 92vw + 1.5rem, 900px, 68vh * 1.4545, (100vh - 7rem) * 1.4545);
+    width: min(100vw - 1.75rem, 92vw + 1.5rem, 900px, 68dvh * 1.4545, (100dvh - 7rem) * 1.4545);
   }
 
   /* Closed cover is aspect-[3/4]; bounding width by height keeps the whole
@@ -151,7 +153,13 @@
 
   .spine-shadow {
     @apply absolute top-0 bottom-0 z-10 pointer-events-none;
-    width: 40px;
+    /* The spine sits outside the --page-scale transform, so a fixed width made
+       it grow proportionally as the book shrank (4.5% of the book at 1440px,
+       13% at 320px). The percentage resolves against .book-frame, so the spine
+       now scales with the book. 5.47% == 40px at the narrowest desktop book
+       (731px, at a 768px viewport), so >=768px keeps exactly 40px and the two
+       terms meet at that width with no jump. */
+    width: min(40px, 5.47%);
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(
