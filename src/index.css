@@ -81,6 +81,13 @@
     height: calc(100% / var(--page-scale, 1));
     transform: scale(var(--page-scale, 1));
     transform-origin: top left;
+    /* .book-page is react-pageflip's .stf__item (transform-style: preserve-3d).
+       For hard pages the library culls the away-facing side with
+       backface-visibility: hidden on the item itself. The transform above makes
+       this child its own plane in that 3D context, so the item's culling no
+       longer covers it and the reversed content showed through mid-flip. Cull
+       this plane's backface too. */
+    backface-visibility: hidden;
   }
 
   .book-page-inner-right {
